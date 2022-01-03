@@ -16,6 +16,7 @@ To start off we are given a dataset that is filled with 39,774 different food re
 Initially we are given two options on data, one that is pre-processed and one that is raw. The pre-processed data converts text to numbers which contains the weight of each word behind the search term. It is said that the order of words that are searched matters in Google search, so the weights will help in calculating the similarity later. For my study I will be going for the pre-processed data as the unprocessed one will take a little longer to make usable. With our data determined we would like to follow the guidelines highlighted in our goals section: recommending at least 3 foods to this customer, search them out in google, and visualizing our results.
 
 ![image](https://user-images.githubusercontent.com/34585038/147899683-ed5e01ce-54d6-4d6f-9c73-0143c5aed80d.png)
+
 *Initial Pre-processed Data Format*
 
 To recommend 3 foods we will have to go through a few processes, namely: cleaning our data and transforming it, performing PCA (Principal Component Analysis) for dimensionality reduction due to the sheer number of columns, using K-means to identify which food group belongs to what (seeing some results), and using a distance matrix to find the most similar foods associated with that item.
@@ -23,6 +24,7 @@ To recommend 3 foods we will have to go through a few processes, namely: cleanin
 Going through the process, I was able to initially clean and id the dataframe. Furthermore, I performed PCA on 2 components to get a dimensionality reduction of the data and used that in the distance matrix later. 
 
 ![image](https://user-images.githubusercontent.com/34585038/147899726-0666a1af-215c-4290-842c-e290404d69b2.png)
+
 *PCA Code Sample*
 
 An elbow method was used to determine the number of optimal clusters based on inertia. Since it made a significant bend at the K=3 value I chose it as the fall off point and proceeded to perform a k-means clustering. The cluster itself yielded 3 groups of similar sizes, with centers relatively approximate to the center of each group. 
@@ -30,6 +32,7 @@ An elbow method was used to determine the number of optimal clusters based on in
 ![image](https://user-images.githubusercontent.com/34585038/147899742-9d541456-1c31-4425-b8bb-6c9ee6d7b061.png)
 
 ![image](https://user-images.githubusercontent.com/34585038/147899745-9d12362b-73d5-4f7e-a98c-a35807315e69.png)
+
 *Elbow Method Plot and Code*
 
 As you can see the mint-colored group is elongated to the right a bit and should account for more variance in the PCA_1 group. For the grey and light green groups, we have some outliers in terms of PCA_2 towards the bottom and one singular outlier towards the top. The labels were then applied accordingly to their respective ids after this.
@@ -37,27 +40,33 @@ As you can see the mint-colored group is elongated to the right a bit and should
 ![image](https://user-images.githubusercontent.com/34585038/147899757-4aaaca1e-b0a6-4b6c-a369-ffbd2d53e1bb.png)
 
 ![image](https://user-images.githubusercontent.com/34585038/147899763-ec738439-e239-4919-9237-7f49ef5d3d21.png)
+
 *K-means Plot Result and code*
 
 After visually seeing the clusters, we can move on to generating our distance matrix, the distance matrix will provide information into how close each food is to each other in terms of the data generated from our PCA result. All tables and outputs will be in the index section but as you can see from that output, the lower the number the closer the foods are together.
 
 ![image](https://user-images.githubusercontent.com/34585038/147899783-577282a8-bc30-4af8-ab65-91ae77dadfa9.png)
+
 *Distance Matrix Code*
 
 ![image](https://user-images.githubusercontent.com/34585038/147899786-9c20da7a-1049-44f3-b3cb-9c361621e37c.png)
+
 *Distance Matrix Output*
 
 Now that our results are all set, we can now generate the results. Although this was not required, I decided to have a bit of fun with making my own method for this part. In the food_recommender method I take a certain user input of a string of words like “Greek romaine lettuce cheese” and find the most similar thing to that by issuing a word count of how many of those words appear in each entry of our data. I then filter on max count to get a list of foods that are the most like what the user just entered and giving a random sample of 1 on that to get our initial sample to recommend on. I know we were supposed to choose an ID number but I decided to have a little fun with this so I could get a different result each time. With our initial result sampled, I use the distance matrix I generated earlier to find the top 3 foods that were most similar by accessing the index and filtering for the minimum distances since that is what indicates it being similar. My output generates 3 foods with the id, ingredients, and cuisine type.
 
 ![image](https://user-images.githubusercontent.com/34585038/147899808-1a9891d2-ce58-4001-a215-10ee446ffc65.png)
+
 *Initial User Input*
 
 ![image](https://user-images.githubusercontent.com/34585038/147899818-86593b52-99b1-4d6d-b441-451ee9f3ad72.png)
+
 *Recommendation Results*
 
 Finally, we have our recommendations. The next steps to perform are a google search, visualization, and application of sorts. I decided to create another function that would query the results straight into googles search engine and return the results. I filtered for the first link that came up as that should be the recipe the id is referring to. Given the website I then further filtered the website for the name of the recipe itself and attempted to get a picture output. Although I was successful in grabbing the recipe name, sometimes the images vary with accuracy. I realize this may need quite a bit of work with data scraping and would need many conditions to account for how each page is built. Since this may not be too predictable, I will not be making any further improvements to it.
 
 ![image](https://user-images.githubusercontent.com/34585038/147899849-817dc77e-f816-44e1-9ffd-9c68c39aa0f3.png)
+
 *Recommendation Search & Scraping Results*
 
 ### DISCUSSION
