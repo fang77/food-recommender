@@ -1,6 +1,6 @@
 # food-recommender
 Food Recommendation Data Science Project
-
+- Jonathan Feng
 
 ### ABSTRACT
 
