@@ -2,10 +2,6 @@
 Food Recommendation Data Science Project
 -Jonathan Feng
 
-### ABSTRACT
-
-With the advent of data science dominating our markets the world has never been a better place. There exists a bit of data science in anything, from buying presents online to self-navigating cars and song recommendations. To make my point, data science has a dominating foothold in society and is too large to not leverage to any company’s advantage and in any industry. In this project we will be going through a series of steps applying machine learning and statistical techniques to create a food recommendation system based on a given food of choice by the user.
-
 ### INTRODUCTION
 
 Recommendations are one of the unique applications of data science and can be applied to anything user based. As mentioned in class we have song recommenders and show recommenders. To give someone a grasp on how applied this is I can list out a handful of meaningful applications for recommendation systems (e.g., housing recommendations, stock purchases, any commercial site, and in our case specifically, recipe/food recommendations). To start off and preface this project I would like to give a brief rundown into the thought process behind this project.
